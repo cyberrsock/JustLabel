@@ -14,10 +14,6 @@ integration-tests:
 
 concat-reports:
 	mkdir allure-results
-	pwd
-	ls
-	ls UTests
-	ls ITests
 	cp UTests/allure-results/* allure-results/
 	cp ITests/allure-results/* allure-results/
 
