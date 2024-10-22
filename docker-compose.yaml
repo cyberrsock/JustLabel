@@ -27,7 +27,7 @@ services:
   backend-main:
     container_name: con-backend-main
     build:
-      context: ./backend
+      context: ./
       dockerfile: Dockerfile
     depends_on:
       postgres-admin:
