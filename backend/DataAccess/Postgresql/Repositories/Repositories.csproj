@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.27" />
+    <PackageReference Include="Serilog" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\..\..\BusinessLogic\Models\Models.csproj" />
+    <ProjectReference Include="..\..\..\BusinessLogic\Repositories\BLRepositories.csproj" />
+  </ItemGroup>
+
+</Project>

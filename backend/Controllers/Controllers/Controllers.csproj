@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+    <ItemGroup>
+     <ProjectReference Include="..\..\BusinessLogic\Services\Services.csproj" />
+     <ProjectReference Include="..\..\BusinessLogic\Models\Models.csproj" />
+     <ProjectReference Include="..\DTO\DTO.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.27" />
+     <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+   </ItemGroup>
+
+</Project>

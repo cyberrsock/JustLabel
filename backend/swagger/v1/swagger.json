@@ -1,0 +1,1225 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Your API",
+      "version": "v1"
+    },
+    "paths": {
+      "/api/v{version}/aggregations/{datasetId}/{schemeId}": {
+        "get": {
+          "tags": [
+            "Aggregations"
+          ],
+          "parameters": [
+            {
+              "name": "datasetId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "schemeId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/v{version}/auth": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Auth"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Auth"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Auth"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthDTOModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthDTOModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthDTOModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/v{version}/datasets": {
+        "post": {
+          "tags": [
+            "Datasets"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "Title": {
+                      "type": "string"
+                    },
+                    "Description": {
+                      "type": "string"
+                    },
+                    "Archive": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                },
+                "encoding": {
+                  "Title": {
+                    "style": "form"
+                  },
+                  "Description": {
+                    "style": "form"
+                  },
+                  "Archive": {
+                    "style": "form"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Datasets"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/v{version}/datasets/{id}": {
+        "get": {
+          "tags": [
+            "Datasets"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Datasets"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Datasets"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/v{version}/labels": {
+        "post": {
+          "tags": [
+            "Labels"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LabelDTOModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LabelDTOModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LabelDTOModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Labels"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/v{version}/marked": {
+        "post": {
+          "tags": [
+            "Marked"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarkedModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarkedModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarkedModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Marked"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarkedDToModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarkedDToModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarkedDToModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Marked"
+          ],
+          "parameters": [
+            {
+              "name": "ids",
+              "in": "query",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/v{version}/marked/{id}": {
+        "get": {
+          "tags": [
+            "Marked"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Marked"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/v{version}/reports": {
+        "post": {
+          "tags": [
+            "Reports"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportDTOModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportDTOModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReportDTOModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Reports"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/v{version}/schemes": {
+        "post": {
+          "tags": [
+            "Schemes"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SchemeDTOModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SchemeDTOModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SchemeDTOModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "get": {
+          "tags": [
+            "Schemes"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/v{version}/schemes/{id}": {
+        "get": {
+          "tags": [
+            "Schemes"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Schemes"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/v{version}/users/{id}": {
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Users"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer",
+                "format": "int32"
+              }
+            },
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/v{version}/users": {
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "parameters": [
+            {
+              "name": "ids",
+              "in": "query",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "patch": {
+          "tags": [
+            "Users"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BannedModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BannedModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BannedModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Users"
+          ],
+          "parameters": [
+            {
+              "name": "version",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDTOModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDTOModel"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserDTOModel"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "AreaModel": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "labelId": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x1": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "y1": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x2": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "y2": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "additionalProperties": false
+        },
+        "AuthDTOModel": {
+          "type": "object",
+          "properties": {
+            "accessToken": {
+              "type": "string",
+              "nullable": true
+            },
+            "refreshToken": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "BannedModel": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "userId": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "adminId": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "reason": {
+              "type": "string",
+              "nullable": true
+            },
+            "banDatetime": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false
+        },
+        "LabelDTOModel": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "title": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "LabelModel": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "title": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "MarkedDToModel": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "schemeId": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "imageId": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "creatorId": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "isBlocked": {
+              "type": "boolean"
+            },
+            "createDatetime": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "areaModels": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AreaModel"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "MarkedModel": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "schemeId": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "imageId": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "creatorId": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "isBlocked": {
+              "type": "boolean"
+            },
+            "createDatetime": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "areaModels": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AreaModel"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "ReportDTOModel": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "markedId": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "creatorId": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "comment": {
+              "type": "string",
+              "nullable": true
+            },
+            "loadDatetime": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false
+        },
+        "SchemeDTOModel": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "title": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": {
+              "type": "string",
+              "nullable": true
+            },
+            "creatorId": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "labelIds": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/LabelModel"
+              },
+              "nullable": true
+            },
+            "createDatetime": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "additionalProperties": false
+        },
+        "UserDTOModel": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "username": {
+              "type": "string",
+              "nullable": true
+            },
+            "isBanned": {
+              "type": "boolean"
+            },
+            "blockMarks": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "UserModel": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "username": {
+              "type": "string",
+              "nullable": true
+            },
+            "email": {
+              "type": "string",
+              "nullable": true
+            },
+            "password": {
+              "type": "string",
+              "nullable": true
+            },
+            "salt": {
+              "type": "string",
+              "nullable": true
+            },
+            "refreshToken": {
+              "type": "string",
+              "nullable": true
+            },
+            "isAdmin": {
+              "type": "boolean"
+            },
+            "blockMarks": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  }
