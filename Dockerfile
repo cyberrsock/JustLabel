@@ -7,4 +7,4 @@ WORKDIR /app
 COPY . ./
 
 # Запуск приложения
-CMD ["dotnet", "test"]
+ENTRYPOINT ["dotnet", "test"]
