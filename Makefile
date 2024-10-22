@@ -21,6 +21,7 @@ concat-reports:
 	mkdir allure-results
 	cp UTests/allure-results/* allure-results/
 	cp ITests/allure-results/* allure-results/
+	cp E2ETests/allure-results/* allure-results/
 
 .PHONY:
 	generate-allure-report unit-tests integration-tests e2e-tests concat-reports
