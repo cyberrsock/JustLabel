@@ -8,7 +8,7 @@ namespace IntegrationTests.Data;
 public class DatabaseFixture
 {
     private string ConnectionString =
-        $"Host=localhost;Port=5432;Username=postgres;Password=123;Database=posttest3";
+        $"Host=localhost;Port=5544;Username=postgres;Password=123;Database=testdb";
 
     public AppDbContext CreateContext() =>
         new AppDbContext(
