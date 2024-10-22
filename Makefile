@@ -19,4 +19,3 @@ concat-reports:
 
 .PHONY:
 	generate-allure-report unit-tests integration-tests concat-reports
-
