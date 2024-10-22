@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoriesMongo", "DataAc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "DataAccess\Postgresql\Repositories\Repositories.csproj", "{7E26D110-CF7C-44BF-A899-32B1CA6A55A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "itests", "ITests\itests.csproj", "{5C52BB01-A0C1-4C61-A687-7FEFC2B535D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "utests", "UTests\utests.csproj", "{57E5A7B1-7EED-4BAC-8348-276C576FB02B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +101,14 @@ Global
 		{272016FA-28AE-493F-BD00-68DBF6B08DB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{272016FA-28AE-493F-BD00-68DBF6B08DB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{272016FA-28AE-493F-BD00-68DBF6B08DB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C52BB01-A0C1-4C61-A687-7FEFC2B535D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C52BB01-A0C1-4C61-A687-7FEFC2B535D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C52BB01-A0C1-4C61-A687-7FEFC2B535D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C52BB01-A0C1-4C61-A687-7FEFC2B535D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57E5A7B1-7EED-4BAC-8348-276C576FB02B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57E5A7B1-7EED-4BAC-8348-276C576FB02B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57E5A7B1-7EED-4BAC-8348-276C576FB02B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57E5A7B1-7EED-4BAC-8348-276C576FB02B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
