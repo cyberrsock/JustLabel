@@ -5,11 +5,11 @@ generate-allure-report:
 	allure serve allure-results -p 10000
 
 unit-tests:
-	dotnet test --filter "FullyQualifiedName~UnitTests" --no-restore
+	dotnet test --filter "FullyQualifiedName~UnitTests"
 
 integration-tests:
 	docker compose up -d
-	dotnet test --filter "FullyQualifiedName~IntegrationTests" --no-restore
+	dotnet test --filter "FullyQualifiedName~IntegrationTests"
 	docker compose down
 
 concat-reports:
