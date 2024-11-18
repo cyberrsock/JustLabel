@@ -32,6 +32,6 @@ jobs:
 
       - name: Run E2E tests
         run: make docker-up -i
-
+      
       - name: Remove env
         run: make docker-down && rm .env
