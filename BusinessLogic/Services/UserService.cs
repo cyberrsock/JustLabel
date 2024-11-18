@@ -4,6 +4,11 @@ using JustLabel.Models;
 using JustLabel.Repositories.Interfaces;
 using JustLabel.Services.Interfaces;
 using JustLabel.Exceptions;
+using System.Net;
+using System.Net.Mail;
+using System;
+using JustLabel.Utilities;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace JustLabel.Services;
 
@@ -11,11 +16,13 @@ public class UserService : IUserService
 {
     private IUserRepository _userRepository;
     private readonly ILogger _logger;
+    private readonly IMemoryCache _cache;
     
-    public UserService(IUserRepository userRepository)
+    public UserService(IUserRepository userRepository, IMemoryCache cache)
     {
         _userRepository = userRepository;
         _logger = Log.ForContext<UserService>();
+        _cache = cache;
     }
 
     public UserModel GetUserByID(int id)
@@ -150,5 +157,99 @@ public class UserService : IUserService
             return model.Id;
         }
         return 0;
+    }
+
+    public int SendMailPassword(int id)
+    {
+        var user = _userRepository.GetUserById(id);
+        
+        if (user is null)
+        {
+            _logger.Error($"User ID{id} does not exist");
+            throw new UserNotExistsException("User with this id does not exist");
+        }
+
+        var email = user.Email;
+
+        _logger.Debug($"Attempt to send password recovery email to {email}");
+
+        string staticCodeString = Environment.GetEnvironmentVariable("STATIC_EMAIL_CODE");
+        int code;
+
+        if (!string.IsNullOrEmpty(staticCodeString))
+        {
+            if (int.TryParse(staticCodeString, out code))
+            {
+                _logger.Debug($"Using static code: {code}");
+            }
+            else
+            {
+                _logger.Error($"STATIC_EMAIL_CODE is not a valid number: {staticCodeString}");
+                throw new InvalidOperationException("STATIC_EMAIL_CODE must be a valid integer.");
+            }
+        }
+        else
+        {
+            code = new Random().Next(100000, 999999);
+            _logger.Debug($"Generated random code: {code}");
+
+            var mailMessage = new MailMessage("dylanpender000@gmail.com", email)
+            {
+                Subject = "Your Code",
+                Body = $"<p>{code}</p>",
+                IsBodyHtml = true
+            };
+
+            using (var smtpClient = new SmtpClient("smtp.gmail.com") 
+            { 
+                Port = 587,
+                Credentials = new NetworkCredential("dylanpender000@gmail.com", "vroy cred hkur ntkw"),
+                EnableSsl = true,
+            })
+            {
+                try
+                {
+                    smtpClient.Send(mailMessage);
+                    _logger.Information($"Successfully sent password recovery email to {email}");
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error(ex, "Failed to send password recovery email");
+                    throw new Exception("An error occurred while attempting to send the password recovery email", ex);
+                }
+            }
+        }
+        return code;
+    }
+
+    public void ChangePassword(int id, int code, string password)
+    {
+        var user = _userRepository.GetUserById(id);
+        if (user is null)
+        {
+            _logger.Error($"User ID{id} does not exist");
+            throw new UserNotExistsException("User with this id does not exist");
+        }
+
+        if (_cache.TryGetValue($"reset_password_code_{id}", out int storedCode))
+        {
+            if (storedCode == code)
+            {
+                _cache.Remove($"reset_password_code_{id}");
+                var hash_password = SaltedHash.GenerateSaltedHash(password, user.Salt);
+                _userRepository.ChangePassword(id, hash_password);
+                _logger.Information($"Password for user ID{id} has been successfully changed.");
+            }
+            else
+            {
+                _logger.Error($"Invalid code provided for user ID{id}");
+                throw new Exception("Invalid or expired code.");
+            }
+        }
+        else
+        {
+            _logger.Error($"No code found in cache for user ID{id}");
+            throw new Exception("No code found or code has expired.");
+        }
     }
 }

@@ -24,7 +24,7 @@ public class AccessTokenMiddleware
         _logger.Debug("Attempt to verify access-token");
         _logger.Debug(context.Request.Path);
 
-        if (context.Request.Path.ToString().Contains("/api") && context.Request.Path.ToString().EndsWith("/auth") && context.Request.Method != "GET")
+        if (context.Request.Path.ToString().Contains("/api") && context.Request.Path.ToString().Contains("/auth") && context.Request.Method != "GET")
         {
             _logger.Debug("Access-token not verified: Auth");
             await _next(context);

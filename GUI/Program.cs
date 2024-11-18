@@ -19,6 +19,7 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Http.Features;
 using MongoDB.Driver;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Caching.Memory;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -110,6 +111,9 @@ builder.Services.AddTransient<IMarkedService, MarkedService>();
 builder.Services.AddTransient<IReportService, ReportService>();
 builder.Services.AddTransient<ISchemeService, SchemeService>();
 builder.Services.AddTransient<IUserService, UserService>();
+
+var memoryCache = new MemoryCache(new MemoryCacheOptions());
+builder.Services.AddSingleton<IMemoryCache>(memoryCache);
 
 bool envConf;
 if (!bool.TryParse(builder.Configuration["EnvironmentConfig"], out envConf))

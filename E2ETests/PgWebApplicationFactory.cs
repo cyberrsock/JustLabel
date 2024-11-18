@@ -1,61 +1,28 @@
 using System.Text;
 using JustLabel.Data;
+using JustLabel.Data.Models;
+using JustLabel.Models;
+using JustLabel.Utilities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 
 namespace E2ETests;
-
-internal class Settings
-{
-    public Settings() { }
-
-    public string SymmetricFuncTestKey = "";
-}
 
 public class PgWebApplicationFactory<T> : WebApplicationFactory<T>
     where T : class
 {
+    public string jwtToken = "";
+
     private const string ConnectionString =
-        @"Host=localhost;Port=5544;Username=postgres;Password=123;Database=testdb";
+        @"Host=localhost;Port=5432;Username=postgres;Password=123;Database=testdb";
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        var settings = new Settings
-        {
-            SymmetricFuncTestKey =
-                "superkey12345678superkey12345678",
-        };
-
         builder
             .UseEnvironment("Testing")
-            .ConfigureServices(services =>
-            {
-                // services.PostConfigure<JwtBearerOptions>(
-                //     JwtBearerDefaults.AuthenticationScheme,
-                //     options =>
-                //     {
-                //         options.TokenValidationParameters =
-                //             new TokenValidationParameters
-                //             {
-                //                 IssuerSigningKey = new SymmetricSecurityKey(
-                //                     Encoding.UTF8.GetBytes(
-                //                         settings.SymmetricFuncTestKey
-                //                     )
-                //                 ),
-                //                 ValidateIssuerSigningKey = true,
-                //                 ValidateIssuer = true,
-                //                 ValidateAudience = true,
-                //                 ValidateLifetime = true,
-                //                 ValidIssuer = "http://localhost:9898",
-                //                 ValidAudience = "http://localhost:3000",
-                //             };
-                //     }
-                // );
-            })
             .ConfigureTestServices(services =>
             {
                 var options = new DbContextOptionsBuilder<AppDbContext>()
@@ -72,6 +39,35 @@ public class PgWebApplicationFactory<T> : WebApplicationFactory<T>
                 var scopedService = scope.ServiceProvider;
                 var db = scopedService.GetRequiredService<AppDbContext>();
                 db.Database.EnsureCreated();
+
+                db.Datasets.RemoveRange(db.Datasets);
+                db.Images.RemoveRange(db.Images);
+                db.Labels.RemoveRange(db.Labels);
+                db.Marked.RemoveRange(db.Marked);
+                db.Reports.RemoveRange(db.Reports);
+                db.Schemes.RemoveRange(db.Schemes);
+                db.LabelsSchemes.RemoveRange(db.LabelsSchemes);
+                db.MarkedAreas.RemoveRange(db.MarkedAreas);
+                db.Areas.RemoveRange(db.Areas);
+                db.Users.RemoveRange(db.Users);
+                db.Banned.RemoveRange(db.Banned);
+
+                var Salt = SaltedHash.GenerateSalt();
+                var Password = SaltedHash.GenerateSaltedHash("test123", Salt);
+
+
+                jwtToken = JWTGenerator.GenerateAccessToken(1, false);
+                db.Users.Add(new UserDbModel() {
+                    Id = 1,
+                    Username = "test123",
+                    Email = "test123",
+                    Password = Password,
+                    Salt = Salt,
+                    RefreshToken = JWTGenerator.GenerateRefreshToken(jwtToken)
+                });
+
+                db.SaveChanges();
+
             });
     }
 }

@@ -4,6 +4,8 @@ using JustLabel.Repositories.Interfaces;
 using JustLabel.Services.Interfaces;
 using JustLabel.Utilities;
 using JustLabel.Exceptions;
+using Microsoft.Extensions.Caching.Memory;
+using System;
 
 namespace JustLabel.Services;
 
@@ -11,11 +13,13 @@ public class AuthService : IAuthService
 {
     private IUserRepository _userRepository;
     private readonly ILogger _logger;
+    private readonly IMemoryCache _cache;
     
-    public AuthService(IUserRepository userRepository)
+    public AuthService(IUserRepository userRepository, IMemoryCache cache)
     {
         _userRepository = userRepository;
         _logger = Log.ForContext<AuthService>();
+        _cache = cache;
     }
 
     public AuthModel Register(UserModel model)
@@ -90,6 +94,7 @@ public class AuthService : IAuthService
             _logger.Error($"User {model.Username} does not exist");
             throw new UserNotExistsException("User with this username does not exist");
         }
+        model.Id = foundUser.Id;
 
         var foundBan = _userRepository.IsBan(foundUser.Id);
         if (foundBan is not null)

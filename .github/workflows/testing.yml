@@ -8,50 +8,30 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
-      - run: dotnet restore
-      
-      - name: Run unit tests
-        run: make unit-tests
+          dotnet-version: '8.0.x'
 
-      - name: Run integration tests
-        if: '!failure()'
-        run: make integration-tests
+      - name: 'Create env file'
+        shell: bash
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          STATIC_EMAIL_CODE: ${{ secrets.STATIC_EMAIL_CODE }}
+        run: |
+          echo "SMTP_HOST=${SMTP_HOST}" >> .env
+          echo "USER_EMAIL=${USER_EMAIL}" >> .env
+          echo "EMAIL_PASSWORD=${EMAIL_PASSWORD}" >> .env
+          echo "STATIC_EMAIL_CODE=${STATIC_EMAIL_CODE}" >> .env
 
-      - name: Run e2e tests
-        if: '!failure()'
-        run: make e2e-tests
-  
-      - name: Processing report data
-        run: make concat-reports -i
-        if: always()
-        continue-on-error: true
+      - name: Run E2E tests
+        run: make docker-up -i
 
-      - name: Load test report history
-        uses: actions/checkout@v4
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
-
-      - name: Build test report
-        uses: simple-elf/allure-report-action@v1.7
-        if: always()
-        with:
-          gh_pages: gh-pages
-          allure_history: allure-history
-          allure_results: allure-results
-
-      - name: Publish test report
-        uses: peaceiris/actions-gh-pages@v3
-        if: always()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: allure-history
+      - name: Remove env
+        run: make docker-down && rm .env

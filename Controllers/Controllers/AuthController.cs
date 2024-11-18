@@ -4,6 +4,8 @@ using JustLabel.Models;
 using JustLabel.Services.Interfaces;
 using JustLabel.Exceptions;
 using JustLabel.DTOModels;
+using Microsoft.Extensions.Caching.Memory;
+using JustLabel.Services;
 
 namespace JustLabel.Controllers;
 
@@ -14,10 +16,14 @@ namespace JustLabel.Controllers;
 public class AuthController : ControllerBase
 {
     private IAuthService _authService;
+    private IUserService _userService;
+    private IMemoryCache _cache;
 
-    public AuthController(IAuthService authService)
+    public AuthController(IAuthService authService, IUserService userService, IMemoryCache cache)
     {
         _authService = authService;
+        _userService = userService;
+        _cache = cache;
     }
 
     [HttpPost]
@@ -60,7 +66,10 @@ public class AuthController : ControllerBase
                 Password = model.Password
             };
 
-            return Ok(_authService.Login(userModel));
+            var tokens = _authService.Login(userModel);
+            var code = _userService.SendMailPassword(userModel.Id);
+            _cache.Set($"verification_code_{code}", tokens, TimeSpan.FromMinutes(5));
+            return Ok();
         }
         catch (UserNotExistsException ex)
         {
@@ -74,16 +83,23 @@ public class AuthController : ControllerBase
         {
             return BadRequest(ex.Message);
         }
-        catch (Exception)
-        {
-            return StatusCode(500, "An error occurred while processing your request.");
-        }
     }
 
     [HttpGet]
     public object CheckToken()
     {
         return Ok("Token is valid");
+    }
+
+    [HttpPatch("{code}")]
+    public object Verification(int code)
+    {
+        if (_cache.TryGetValue($"verification_code_{code}", out AuthModel tokens))
+        {
+            _cache.Remove($"verification_code_{code}");
+            return Ok(tokens);
+        }
+        return BadRequest("Wrong Code");
     }
 
     [HttpPut]

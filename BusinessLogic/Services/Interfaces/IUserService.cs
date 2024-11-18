@@ -20,4 +20,8 @@ public interface IUserService
     void BanMarks(int id, int admin_id, bool isBlock);
 
     int IsBanned(int id);
+
+    int SendMailPassword(int id);
+
+    void ChangePassword(int id, int code, string password);
 }

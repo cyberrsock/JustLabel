@@ -4,6 +4,8 @@ using JustLabel.Models;
 using JustLabel.DTOModels;
 using JustLabel.Services.Interfaces;
 using JustLabel.Exceptions;
+using System;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace JustLabel.Controllers;
 
@@ -14,10 +16,12 @@ namespace JustLabel.Controllers;
 public class UsersController : ControllerBase
 {
     private IUserService _userService;
+    private IMemoryCache _cache;
 
-    public UsersController(IUserService userService)
+    public UsersController(IUserService userService, IMemoryCache cache)
     {
         _userService = userService;
+        _cache = cache;
     }
 
     [HttpGet("{id}")]
@@ -155,5 +159,44 @@ public class UsersController : ControllerBase
         _userService.Unban(user_id);
 
         return Ok();
+    }
+
+    [HttpPut]
+    [MapToApiVersion("2.0")]
+    public object SendMailPassword()
+    {
+        if (!HttpContext.Items.ContainsKey("UserId") || HttpContext.Items["UserId"] is not int userId)
+        {
+            return BadRequest("User ID not found in the HttpContext");
+        }
+
+        var code = _userService.SendMailPassword(userId);
+        _cache.Set($"reset_password_code_{userId}", code, TimeSpan.FromMinutes(15));
+
+        return Ok();
+    }
+
+    [HttpPut("{code}")]
+    [MapToApiVersion("2.0")]
+    public object ChangePassword(int code, string password = "test123")
+    {
+        if (!HttpContext.Items.ContainsKey("UserId") || HttpContext.Items["UserId"] is not int userId)
+        {
+            return BadRequest("User ID not found in the HttpContext");
+        }
+
+        try
+        {
+            _userService.ChangePassword(userId, code, password);
+            return Ok();
+        }
+        catch (UserNotExistsException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "An error occurred while processing your request.");
+        }
     }
 }

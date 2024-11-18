@@ -137,4 +137,16 @@ public class UserRepositoryMongoDb : IUserRepository
         }
         _logger.Debug($"Token successfully updated");
     }
+
+    public void ChangePassword(int id, string password)
+    {
+        _logger.Debug($"Attempt to update token");
+        var user = _context.Users.FirstOrDefault(u => u.Id == id);
+        if (user is not null)
+        {
+            user.Password = password;
+            _context.SaveChanges();
+        }
+        _logger.Debug($"Token successfully updated");
+    }
 }

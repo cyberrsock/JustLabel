@@ -8,7 +8,7 @@ namespace IntegrationTests.Data;
 public class DatabaseFixture
 {
     private string ConnectionString =
-        $"Host=localhost;Port=5544;Username=postgres;Password=123;Database=testdb";
+        $"Host=localhost;Port=5432;Username=postgres;Password=123;Database=testdb";
 
     public AppDbContext CreateContext() =>
         new AppDbContext(
@@ -47,5 +47,6 @@ public class DatabaseFixture
     }
 }
 
-[CollectionDefinition("Test Database", DisableParallelization = true)]
+[CollectionDefinition("Test Database", DisableParallelization = false)]
+[assembly: CollectionBehavior(MaxParallelThreads = 8)]
 public class DatabaseCollection : ICollectionFixture<DatabaseFixture> { }

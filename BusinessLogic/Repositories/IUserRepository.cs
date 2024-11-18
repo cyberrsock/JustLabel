@@ -26,4 +26,6 @@ public interface IUserRepository
     UserModel? GetUserByEmail(string email);
 
     void UpdateToken(UserModel model);
+
+    void ChangePassword(int id, string password);
 }

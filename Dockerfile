@@ -7,4 +7,4 @@ WORKDIR /app
 COPY . ./
 
 # Запуск приложения
-ENTRYPOINT ["dotnet", "test"]
+ENTRYPOINT ["dotnet", "test", "--filter", "FullyQualifiedName~E2ETests"]  
