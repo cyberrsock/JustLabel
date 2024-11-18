@@ -3,7 +3,7 @@ docker-up:
 
 docker-down:
 	docker compose down
-	docker image rm testing-auth-app alpine:latest
+	docker image rm backend postgresql-testdb
 
 .PHONY:
 	docker-run docker-rm
