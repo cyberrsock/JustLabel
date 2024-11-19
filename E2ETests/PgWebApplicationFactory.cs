@@ -16,11 +16,14 @@ public class PgWebApplicationFactory<T> : WebApplicationFactory<T>
 {
     public string jwtToken = "";
 
-    private const string ConnectionString =
-        @"Host=localhost;Port=5432;Username=postgres;Password=123;Database=testdb";
-
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
+        string host = Environment.GetEnvironmentVariable("POSTGRESQL_HOST")!;
+        string port = Environment.GetEnvironmentVariable("POSTGRESQL_PORT")!;
+        string username = Environment.GetEnvironmentVariable("POSTGRESQL_USERNAME")!;
+        string password = Environment.GetEnvironmentVariable("POSTGRESQL_PASSWORD")!;
+        string database = Environment.GetEnvironmentVariable("POSTGRESQL_DATABASE")!;
+        string ConnectionString = $"Host={host};Port={port};Database={database};User Id={username};Password={password};";
         builder
             .UseEnvironment("Testing")
             .ConfigureTestServices(services =>

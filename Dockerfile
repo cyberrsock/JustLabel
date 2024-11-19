@@ -6,5 +6,7 @@ WORKDIR /app
 # Копируем все файлы проекта
 COPY . ./
 
+WORKDIR /app/E2ETests
+
 # Запуск приложения
-ENTRYPOINT ["dotnet", "test", "--filter", "FullyQualifiedName~E2ETests"]  
+CMD ["dotnet", "test"]

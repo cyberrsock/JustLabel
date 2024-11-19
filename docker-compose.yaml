@@ -19,13 +19,13 @@ services:
     depends_on:
       - postgresql-testdb
     environment:
-      POSTGRES_HOST: postgresql-testdb
-      POSTGRES_PORT: 7531
-      POSTGRESQL_PORT: 7531
+      POSTGRESQL_HOST: postgresql-testdb
+      POSTGRESQL_PORT: 5432
       POSTGRESQL_USERNAME: postgres
       POSTGRESQL_PASSWORD: 123
       POSTGRESQL_DATABASE: testdb
       BACKEND_TYPE: docker
+      # STATIC_EMAIL_CODE: 123456
     ports:
       - "9898:9898"
   

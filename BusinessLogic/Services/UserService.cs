@@ -193,17 +193,17 @@ public class UserService : IUserService
             code = new Random().Next(100000, 999999);
             _logger.Debug($"Generated random code: {code}");
 
-            var mailMessage = new MailMessage("dylanpender000@gmail.com", email)
+            var mailMessage = new MailMessage(Environment.GetEnvironmentVariable("USER_EMAIL"), email)
             {
                 Subject = "Your Code",
                 Body = $"<p>{code}</p>",
                 IsBodyHtml = true
             };
 
-            using (var smtpClient = new SmtpClient("smtp.gmail.com") 
+            using (var smtpClient = new SmtpClient(Environment.GetEnvironmentVariable("SMTP_HOST")) 
             { 
                 Port = 587,
-                Credentials = new NetworkCredential("dylanpender000@gmail.com", "vroy cred hkur ntkw"),
+                Credentials = new NetworkCredential(Environment.GetEnvironmentVariable("USER_EMAIL"), Environment.GetEnvironmentVariable("EMAIL_PASSWORD")),
                 EnableSsl = true,
             })
             {
