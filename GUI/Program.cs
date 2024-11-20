@@ -20,8 +20,6 @@ using Microsoft.AspNetCore.Http.Features;
 using MongoDB.Driver;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Caching.Memory;
-using JustLabel.ComplexityTests;
-using JustLabel.UnreachableCodeTests;
 
 var builder = WebApplication.CreateBuilder(args);
 
