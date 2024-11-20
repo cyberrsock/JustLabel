@@ -5,7 +5,8 @@ docker-down:
 	docker compose down
 
 static-tests:
-	dotnet build --project GUI
+	cd GUI
+	dotnet build
 
 .PHONY:
 	docker-run docker-rm
