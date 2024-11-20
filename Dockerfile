@@ -8,7 +8,7 @@ COPY . ./
 
 WORKDIR /app/GUI
 
-RUN dotnet build
+RUN dotnet build > /dev/null 2>&1
 
 WORKDIR /app/E2ETests
 
