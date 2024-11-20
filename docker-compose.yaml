@@ -25,7 +25,7 @@ services:
       POSTGRESQL_PASSWORD: 123
       POSTGRESQL_DATABASE: testdb
       BACKEND_TYPE: docker
-      # STATIC_EMAIL_CODE: 123456
+
     ports:
       - "9898:9898"
   

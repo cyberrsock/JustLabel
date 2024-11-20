@@ -20,6 +20,8 @@ using Microsoft.AspNetCore.Http.Features;
 using MongoDB.Driver;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Caching.Memory;
+using JustLabel.ComplexityTests;
+using JustLabel.UnreachableCodeTests;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,8 +30,8 @@ builder.Configuration.AddJsonFile("appsettings.json");
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .WriteTo.Console()
-    .Filter.ByExcluding(logEvent => 
-        logEvent.Properties.ContainsKey("SourceContext") && 
+    .Filter.ByExcluding(logEvent =>
+        logEvent.Properties.ContainsKey("SourceContext") &&
         logEvent.Properties["SourceContext"].ToString().Contains("Microsoft.EntityFrameworkCore.Database.Command")
     )
     .CreateLogger();
@@ -122,8 +124,10 @@ if (!bool.TryParse(builder.Configuration["EnvironmentConfig"], out envConf))
 }
 
 var dbms = builder.Configuration["DBMS"];
-if (!envConf) {
-    if (dbms == "MongoDb") {
+if (!envConf)
+{
+    if (dbms == "MongoDb")
+    {
         builder.Services.AddTransient<IDatasetRepository, DatasetRepositoryMongoDb>();
         builder.Services.AddTransient<IImageRepository, ImageRepositoryMongoDb>();
         builder.Services.AddTransient<ILabelRepository, LabelRepositoryMongoDb>();
@@ -138,7 +142,8 @@ if (!envConf) {
         });
         builder.Services.AddScoped<AppDbContextMongoDb>();
     }
-    else if (dbms == "PostgreSQL") {
+    else if (dbms == "PostgreSQL")
+    {
         builder.Services.AddTransient<IDatasetRepository, DatasetRepository>();
         builder.Services.AddTransient<IImageRepository, ImageRepository>();
         builder.Services.AddTransient<ILabelRepository, LabelRepository>();
@@ -151,15 +156,20 @@ if (!envConf) {
             options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL"));
         });
         builder.Services.AddScoped<AppDbContext>();
-    } else {
+    }
+    else
+    {
         builder.Services.AddDbContext<AppDbContext>(options =>
         {
             options.UseInMemoryDatabase("AppDatabase");
         });
         builder.Services.AddScoped<AppDbContext>();
     }
-} else {
-    if (dbms == "PostgreSQL") {
+}
+else
+{
+    if (dbms == "PostgreSQL")
+    {
         builder.Services.AddTransient<IDatasetRepository, DatasetRepository>();
         builder.Services.AddTransient<IImageRepository, ImageRepository>();
         builder.Services.AddTransient<ILabelRepository, LabelRepository>();
@@ -177,7 +187,9 @@ if (!envConf) {
             options.UseNpgsql($"Host={host};Port={port};Database={database};User Id={username};Password={password};");
         });
         builder.Services.AddScoped<AppDbContext>();
-    } else {
+    }
+    else
+    {
         builder.Services.AddDbContext<AppDbContext>(options =>
         {
             options.UseInMemoryDatabase("AppDatabase");
@@ -214,7 +226,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "api/v{version:apiVersion}/{controller}/{action=Index}/{id?}");
 
-app.MapFallbackToFile("index.html");;
+app.MapFallbackToFile("index.html"); ;
 
 app.Run();
 

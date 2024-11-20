@@ -36,7 +36,6 @@ public class FeatureSteps : IClassFixture<PgWebApplicationFactory<Program>>
         dynamic actual = JsonConvert.DeserializeObject(responseBody); // Deserialize actual response
 
         actual.Should().BeEquivalentTo(expected);
-
     }
 
 
