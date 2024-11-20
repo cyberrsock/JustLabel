@@ -26,7 +26,7 @@ public class LabelService : ILabelService
         _logger.Debug($"Attempt to create label {model.Title}");
 
         model.Title = char.ToUpperInvariant(model.Title[0]) + model.Title[1..].ToLowerInvariant();
-        
+
         var labels = _labelRepository.Get();
         if (labels.Any(label => label.Title == model.Title))
         {
@@ -38,7 +38,7 @@ public class LabelService : ILabelService
         _logger.Information($"New label: ${model.Title}");
 
         _logger.Debug($"Label {model.Title} successfully added");
-        
+
         return res;
     }
 

@@ -42,18 +42,19 @@ public class FeatureSteps : IClassFixture<PgWebApplicationFactory<Program>>
     [When(@"User send ""(.*)"" request to ""(.*)""")]
     public async Task WhenUserSendRequest(string method, string endpoint)
     {
-        
+
         if (method == "PATCH")
         {
             var requestBody = new
             {
                 username = "test123",
-                email = "test123", 
+                email = "test123",
                 password = "test123"
             };
             var content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
             _response = await _client.PatchAsync(endpoint, content);
-        } else if (method == "PUT")
+        }
+        else if (method == "PUT")
         {
             var requestBody = new
             {

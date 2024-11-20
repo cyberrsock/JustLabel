@@ -59,7 +59,8 @@ public class MarksController : ControllerBase
 
         if (findModel is null && markModel.AreaModels.Count > 0)
         {
-            try {
+            try
+            {
                 _markedService.Create(markModel);
             }
             catch (MarkedException ex)
@@ -74,7 +75,8 @@ public class MarksController : ControllerBase
         else
         {
             markModel.Id = findModel.Id;
-            try {
+            try
+            {
                 _markedService.Update_Rects(markModel);
             }
             catch (MarkedException ex)

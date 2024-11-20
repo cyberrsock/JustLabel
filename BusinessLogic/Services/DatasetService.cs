@@ -7,7 +7,7 @@ using JustLabel.Exceptions;
 
 namespace JustLabel.Services;
 
-public class DatasetService: IDatasetService
+public class DatasetService : IDatasetService
 {
     private IDatasetRepository _datasetRepository;
     private IImageRepository _imageRepository;
@@ -44,7 +44,7 @@ public class DatasetService: IDatasetService
         _logger.Debug($"Data of dataset {model.Title} is correct");
 
         int id = _datasetRepository.Add(model);
-        
+
         foreach (var image in images)
         {
             image.DatasetId = id;
@@ -93,7 +93,8 @@ public class DatasetService: IDatasetService
     {
         _logger.Debug($"Attempt to get image");
         var res = _imageRepository.Get(id);
-        if (res == null) {
+        if (res == null)
+        {
             _logger.Debug($"Image not exists");
             return -1;
         }
@@ -117,7 +118,8 @@ public class DatasetService: IDatasetService
         _logger.Debug($"Marked ID{id} successfully got");
 
         _logger.Debug($"Attempt to delete marks");
-        foreach(var r in res) {
+        foreach (var r in res)
+        {
             _markedRepository.Delete(r.Id);
         }
         _logger.Debug($"Marks successfully got");

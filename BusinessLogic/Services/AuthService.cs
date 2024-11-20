@@ -14,7 +14,7 @@ public class AuthService : IAuthService
     private IUserRepository _userRepository;
     private readonly ILogger _logger;
     private readonly IMemoryCache _cache;
-    
+
     public AuthService(IUserRepository userRepository, IMemoryCache cache)
     {
         _userRepository = userRepository;
@@ -67,7 +67,7 @@ public class AuthService : IAuthService
         foundUser = _userRepository.GetUserByUsername(model.Username);
         string accessToken = JWTGenerator.GenerateAccessToken(foundUser.Id, foundUser.IsAdmin);
         string refreshToken = JWTGenerator.GenerateRefreshToken(accessToken);
-        
+
         _logger.Debug($"JWT for user {model.Username} has been generated");
 
         foundUser.RefreshToken = refreshToken;
@@ -78,7 +78,8 @@ public class AuthService : IAuthService
 
         _logger.Debug($"User {model.Username} successfully registered");
 
-        return new() {
+        return new()
+        {
             AccessToken = accessToken,
             RefreshToken = refreshToken
         };
@@ -110,7 +111,7 @@ public class AuthService : IAuthService
         }
 
         _logger.Debug($"Login data of user {model.Username} is correct");
-        
+
         string accessToken = JWTGenerator.GenerateAccessToken(foundUser.Id, foundUser.IsAdmin);
         string refreshToken = JWTGenerator.GenerateRefreshToken(accessToken);
 
@@ -120,7 +121,8 @@ public class AuthService : IAuthService
 
         _logger.Debug($"User {model.Username} successfully login");
 
-        return new() {
+        return new()
+        {
             AccessToken = accessToken,
             RefreshToken = refreshToken
         };
@@ -129,7 +131,7 @@ public class AuthService : IAuthService
     public AuthModel UpdateToken(AuthModel model)
     {
         _logger.Debug("Attempt to update token");
-        
+
         if (!JWTGenerator.ValidateRefreshToken(model.RefreshToken, model.AccessToken))
         {
             _logger.Error($"Wrong refresh token: {model.RefreshToken}");
@@ -148,7 +150,8 @@ public class AuthService : IAuthService
 
         _logger.Debug("Token was generated");
 
-        UserModel user = new() {
+        UserModel user = new()
+        {
             Id = id,
             RefreshToken = refreshToken
         };
@@ -157,7 +160,8 @@ public class AuthService : IAuthService
 
         _logger.Debug("Token was successfully updated");
 
-        return new() {
+        return new()
+        {
             AccessToken = accessToken,
             RefreshToken = refreshToken
         };

@@ -152,7 +152,7 @@ public class DatasetServiceUnitTests
         {
             new ImageModelBuilder().WithId(1).WithDatasetId(datasetId).Build(),
         };
-        
+
         _mockDatasetRepository
             .Setup(s => s.Get(datasetId))
             .Returns(dataset);
@@ -177,7 +177,7 @@ public class DatasetServiceUnitTests
         _mockDatasetRepository
             .Setup(s => s.Get(datasetId))
             .Returns((DatasetModel)null);
-        
+
         // Act
         var exception = Assert.Throws<DatasetNotExitedException>(() => _datasetService.Get(datasetId));
 
@@ -194,7 +194,7 @@ public class DatasetServiceUnitTests
             new DatasetModelBuilder().WithId(1).WithTitle("Dataset 1").Build(),
             new DatasetModelBuilder().WithId(2).WithTitle("Dataset 2").Build(),
         };
-        
+
         _mockDatasetRepository.Setup(s => s.GetAll()).Returns(datasetList);
 
         // Act
@@ -240,9 +240,9 @@ public class DatasetServiceUnitTests
     {
         // Arrange
         int imageId = 1;
-        
+
         _mockImageRepository.Setup(s => s.Get(imageId)).Returns((ImageModel)null);
-        
+
         // Act
         var resultDatasetId = _datasetService.WhichImage(imageId);
 
@@ -256,7 +256,7 @@ public class DatasetServiceUnitTests
         // Arrange
         int datasetId = 1;
         var dataset = new DatasetModelBuilder().WithId(datasetId).Build();
-        
+
         List<DatasetModel> datasets = [dataset];
 
         _mockDatasetRepository

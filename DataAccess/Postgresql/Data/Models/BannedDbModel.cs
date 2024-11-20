@@ -15,7 +15,7 @@ public class BannedDbModel
     [ForeignKey("User")]
     [Column("userID")]
     public int UserId { get; set; }
-    
+
     [ForeignKey("Admin")]
     [Column("adminID")]
     public int AdminId { get; set; }

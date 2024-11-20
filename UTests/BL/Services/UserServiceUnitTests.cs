@@ -103,7 +103,7 @@ public class UserServiceUnitTests
             .WithId(2)
             .WithIsAdmin(true)
             .Build();
-        
+
         var targetUser = new UserModelBuilder()
             .WithId(1)
             .WithIsAdmin(false)
@@ -125,7 +125,7 @@ public class UserServiceUnitTests
     {
         // Arrange
         var bannedModel = new BannedModelBuilder().WithUserId(1).WithAdminId(2).Build();
-        
+
         _mockUserRepository.Setup(repo => repo.GetUserById(bannedModel.UserId)).Returns((UserModel)null);
 
         // Act

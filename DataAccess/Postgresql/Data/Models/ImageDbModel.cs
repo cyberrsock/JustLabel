@@ -27,5 +27,5 @@ public class ImageDbModel
 
     public DatasetDbModel? Dataset { get; set; }
 
-    public ICollection<MarkedDbModel> Marks {get;set;} = [];
+    public ICollection<MarkedDbModel> Marks { get; set; } = [];
 }

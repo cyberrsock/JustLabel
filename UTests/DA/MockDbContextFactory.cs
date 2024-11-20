@@ -54,7 +54,7 @@ public class MockDbContextFactory
         MockContext.Setup(m => m.Banned).Returns(MockBannedDbSet.Object);
         MockContext.Setup(m => m.Aggregated).Returns(MockAggregatedDbSet.Object);
 
-        MockContext.Setup(m => m.SaveChanges()).Callback(() => {});
+        MockContext.Setup(m => m.SaveChanges()).Callback(() => { });
     }
 
     public static Mock<DbSet<T>> SetupMockDbSet<T>(List<T> list)
@@ -81,9 +81,9 @@ public class MockDbContextFactory
         mockDbSet
             .Setup(m => m.Add(It.IsAny<T>()))
             .Callback<T>(item => list.Add(item));
-         mockDbSet
-            .Setup(m => m.Remove(It.IsAny<T>()))
-            .Callback<T>(item => list.Remove(item));
+        mockDbSet
+           .Setup(m => m.Remove(It.IsAny<T>()))
+           .Callback<T>(item => list.Remove(item));
         return mockDbSet;
     }
 
@@ -153,4 +153,3 @@ public class MockDbContextFactory
         MockContext.Setup(m => m.MarkedAreas).Returns(MockMarkedAreasDbSet.Object);
     }
 }
-  

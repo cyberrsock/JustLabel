@@ -58,7 +58,7 @@ public class SchemeRepositoryMongoDb : ISchemeRepository
     public SchemeModel? Get(int id)
     {
         _logger.Debug($"Attempt to get a scheme ID{id}");
-        var LabelsSchemes =  _context.LabelsSchemes.Where(u => u.SchemeId == id).ToList();
+        var LabelsSchemes = _context.LabelsSchemes.Where(u => u.SchemeId == id).ToList();
         var Scheme = _context.Schemes.FirstOrDefault(u => u.Id == id);
         SchemeModel res = SchemeConverter.DbToCoreModel(Scheme, LabelsSchemes);
         _logger.Debug($"Scheme ID{id} successfully got");
@@ -70,14 +70,14 @@ public class SchemeRepositoryMongoDb : ISchemeRepository
         _logger.Debug($"Attempt to get schemes");
         var LabelsSchemes = _context.Schemes.ToList();
         var schemeModels = new List<SchemeModel>();
-        
+
         foreach (var scheme in LabelsSchemes)
         {
             var LabelsForScheme = _context.LabelsSchemes.Where(ls => ls.SchemeId == scheme.Id).ToList();
             var gg = SchemeConverter.DbToCoreModel(scheme, LabelsForScheme);
             schemeModels.Add(gg);
         }
-        
+
         _logger.Debug($"Schemes successfully got");
         return schemeModels;
     }

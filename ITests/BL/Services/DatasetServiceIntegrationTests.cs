@@ -11,7 +11,7 @@ using IntegrationTests.Builders;
 namespace IntegrationTests.Services;
 
 [Collection("Test Database")]
-public class DatasetServiceIntegrationTests: BaseServiceIntegrationTests
+public class DatasetServiceIntegrationTests : BaseServiceIntegrationTests
 {
     private readonly AppDbContext _context;
     private readonly DatasetService _datasetService;
@@ -42,11 +42,11 @@ public class DatasetServiceIntegrationTests: BaseServiceIntegrationTests
         var user1 = new UserDbModelBuilder()
             .WithId(1)
             .Build();
-        
+
         var user2 = new UserDbModelBuilder()
             .WithId(2)
             .Build();
-        
+
         var user3 = new UserDbModelBuilder()
             .WithId(3)
             .Build();
@@ -171,7 +171,7 @@ public class DatasetServiceIntegrationTests: BaseServiceIntegrationTests
 
         // Arrange
         int datasetId = 1;
-        
+
         // Act
         var exception = Assert.Throws<DatasetNotExitedException>(() => _datasetService.Get(datasetId));
 
@@ -243,7 +243,7 @@ public class DatasetServiceIntegrationTests: BaseServiceIntegrationTests
 
         // Arrange
         int imageId = 1;
-        
+
         // Act
         var resultDatasetId = _datasetService.WhichImage(imageId);
 
@@ -258,7 +258,7 @@ public class DatasetServiceIntegrationTests: BaseServiceIntegrationTests
 
         // Arrange
         int datasetId = 1;
-        var dataset = new DatasetDbModelBuilder().WithId(datasetId).WithCreatorId(2).Build();        
+        var dataset = new DatasetDbModelBuilder().WithId(datasetId).WithCreatorId(2).Build();
         context.Datasets.Add(dataset);
         context.SaveChanges();
 

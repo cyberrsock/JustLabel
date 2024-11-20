@@ -69,7 +69,8 @@ public class MarkedService : IMarkedService
     {
         _logger.Debug($"Attempt to get marked ID{model.Id}");
         var res = _markedRepository.Get(model);
-        if (res == null) {
+        if (res == null)
+        {
             throw new MarkedException("Marked not found");
         }
         _logger.Debug($"Marked ID{model.Id} successfully got");
@@ -86,7 +87,7 @@ public class MarkedService : IMarkedService
         {
             return res.Where(item => item.IsBlocked == false).ToList();
         }
-    
+
         return res;
     }
 

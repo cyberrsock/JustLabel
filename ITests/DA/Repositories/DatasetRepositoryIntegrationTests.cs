@@ -14,7 +14,7 @@ public class DatasetRepositoryIntegrationTests : BaseRepositoryIntegrationTests
 
     public DatasetRepositoryIntegrationTests(DatabaseFixture fixture) : base(fixture)
     {
-        _datasetRepository = new (Fixture.CreateContext());
+        _datasetRepository = new(Fixture.CreateContext());
     }
 
     private JustLabel.Data.AppDbContext Initialize()
@@ -24,11 +24,11 @@ public class DatasetRepositoryIntegrationTests : BaseRepositoryIntegrationTests
         var user1 = new UserDbModelBuilder()
             .WithId(1)
             .Build();
-        
+
         var user2 = new UserDbModelBuilder()
             .WithId(2)
             .Build();
-        
+
         var user3 = new UserDbModelBuilder()
             .WithId(3)
             .Build();
@@ -55,7 +55,7 @@ public class DatasetRepositoryIntegrationTests : BaseRepositoryIntegrationTests
             1,
             DateTime.Now
         );
-        
+
         context.SaveChanges();
 
         // Act
@@ -75,7 +75,7 @@ public class DatasetRepositoryIntegrationTests : BaseRepositoryIntegrationTests
     public void TestAddDatasetInNonEmptyTable()
     {
         using var context = Initialize();
-        
+
         // Arrange
         var dataset1 = DatasetDbModelFactory.Create(
             123,
@@ -95,7 +95,7 @@ public class DatasetRepositoryIntegrationTests : BaseRepositoryIntegrationTests
         );
 
         var now = DateTime.Now;
-        
+
         context.Datasets.Add(dataset1);
         context.SaveChanges();
 
@@ -179,7 +179,7 @@ public class DatasetRepositoryIntegrationTests : BaseRepositoryIntegrationTests
 
         context.Datasets.Add(datasetDbo);
         context.SaveChanges();
-        
+
         // Act
         var resultDataset = _datasetRepository.Get(999);
 
@@ -197,7 +197,7 @@ public class DatasetRepositoryIntegrationTests : BaseRepositoryIntegrationTests
         using var context = Initialize();
 
         // Arrange
-        
+
         // Act
         var addedDataset = _datasetRepository.Get(1);
 
@@ -230,7 +230,7 @@ public class DatasetRepositoryIntegrationTests : BaseRepositoryIntegrationTests
         context.Datasets.Add(datasetDbo1);
         context.Datasets.Add(datasetDbo2);
         context.SaveChanges();
-        
+
         // Act
         var resultDatasets = _datasetRepository.GetAll();
 
@@ -250,9 +250,9 @@ public class DatasetRepositoryIntegrationTests : BaseRepositoryIntegrationTests
     public void TestGetAllNoDataset()
     {
         using var context = Initialize();
-        
+
         // Arrange
-        
+
         // Act
         var addedDatasets = _datasetRepository.GetAll();
 

@@ -51,7 +51,7 @@ public class SchemeRepositoryUnitTests
         Assert.Equal(scheme.CreatorId, schemes[0].CreatorId);
         Assert.Empty(labelSchemes);
     }
-    
+
     [Fact]
     public void TestAddSchemeWithLabels()
     {
@@ -95,7 +95,7 @@ public class SchemeRepositoryUnitTests
     {
         // Arrange
         var scheme = SchemeModelFactory.Create(1, "Scheme to Delete", "Description", 3, [], DateTime.Now);
-        
+
         List<SchemeDbModel> schemes = [SchemeDbModelFactory.Create(scheme)];
         _mockFactory.SetSchemeList(schemes);
 
@@ -167,7 +167,7 @@ public class SchemeRepositoryUnitTests
         var resultScheme = _schemeRepository.Get(1);
 
         // Assert
-        Assert.Null(resultScheme); 
+        Assert.Null(resultScheme);
     }
 
     [Fact]
@@ -178,7 +178,7 @@ public class SchemeRepositoryUnitTests
         List<LabelSchemeDbModel> labelsSchemes = [
             LabelSchemeDbModelFactory.Create(1, 1),
             LabelSchemeDbModelFactory.Create(1, 2)
-        ]; 
+        ];
         List<LabelDbModel> labels = [
             LabelDbModelFactory.Create(1, "Test Label")
         ];

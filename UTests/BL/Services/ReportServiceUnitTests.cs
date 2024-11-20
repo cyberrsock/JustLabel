@@ -8,15 +8,17 @@ using UnitTests.Builders;
 
 namespace UnitTests.Services;
 
-internal class InMemoryReportRepository: IReportRepository
+internal class InMemoryReportRepository : IReportRepository
 {
     public List<ReportModel> Reports = [];
 
-    public void Create(ReportModel model) {
+    public void Create(ReportModel model)
+    {
         Reports.Add(model);
     }
 
-    public List<ReportModel> GetAll() {
+    public List<ReportModel> GetAll()
+    {
         return Reports;
     }
 }
@@ -158,8 +160,8 @@ public class ReportServiceUnitTests
         var userModel = new UserModelBuilder()
             .WithId(3)
             .Build();
-        
-        _userRepository.Users =[userModel];
+
+        _userRepository.Users = [userModel];
 
         // Act
         _reportService.Create(reportModel);

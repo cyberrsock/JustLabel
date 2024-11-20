@@ -11,7 +11,7 @@ public class DatasetDbModel
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("id")]
-    public int Id { get; set; } 
+    public int Id { get; set; }
 
     [Column("title")]
     public string Title { get; set; }
@@ -28,5 +28,5 @@ public class DatasetDbModel
 
     public UserDbModel? User { get; set; }
 
-    public ICollection<ImageDbModel> Images {get;set;} = [];
+    public ICollection<ImageDbModel> Images { get; set; } = [];
 }

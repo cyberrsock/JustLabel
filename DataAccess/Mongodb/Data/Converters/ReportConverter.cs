@@ -7,7 +7,8 @@ public static class ReportConverter
 {
     public static ReportDbModel? CoreToDbModel(ReportModel? model)
     {
-        return model is null ? null : new () {
+        return model is null ? null : new()
+        {
             Id = model.Id,
             MarkedId = model.MarkedId,
             CreatorId = model.CreatorId,
@@ -18,7 +19,8 @@ public static class ReportConverter
 
     public static ReportModel? DbToCoreModel(ReportDbModel? model)
     {
-        return model is null ? null : new () {
+        return model is null ? null : new()
+        {
             Id = model.Id,
             MarkedId = model.MarkedId,
             CreatorId = model.CreatorId,

@@ -60,7 +60,8 @@ public class PgWebApplicationFactory<T> : WebApplicationFactory<T>
 
 
                 jwtToken = JWTGenerator.GenerateAccessToken(1, false);
-                db.Users.Add(new UserDbModel() {
+                db.Users.Add(new UserDbModel()
+                {
                     Id = 1,
                     Username = "test123",
                     Email = "test123",

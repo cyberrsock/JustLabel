@@ -52,7 +52,7 @@ public class SchemeServiceIntegrationTests : BaseServiceIntegrationTests
     public void TestAddSchemeWithValidData()
     {
         using var context = Initialize();
-        
+
         // Arrange
         var scheme = new SchemeModelBuilder()
             .WithId(1)
@@ -60,7 +60,7 @@ public class SchemeServiceIntegrationTests : BaseServiceIntegrationTests
             .WithCreatorId(1)
             .WithLabelIds(new List<LabelModel> { new LabelModel() { Id = 1 }, new LabelModel() { Id = 2 } })
             .Build();
-        
+
         context.Labels.Add(LabelDbModelFactory.Create(1, "Test1"));
         context.Labels.Add(LabelDbModelFactory.Create(2, "Test2"));
         context.SaveChanges();
@@ -150,7 +150,7 @@ public class SchemeServiceIntegrationTests : BaseServiceIntegrationTests
     public void TestGetSchemeWithNonExistingId()
     {
         using var context = Initialize();
-        
+
         // Arrange
         int schemeId = 1;
 

@@ -16,7 +16,7 @@ public class UserDbModel
 
     [Column("email")]
     public string Email { get; set; }
-    
+
     [Column("password")]
     public string Password { get; set; }
 
@@ -32,11 +32,11 @@ public class UserDbModel
     [Column("blockMarks")]
     public bool BlockMarks { get; set; }
 
-    public ICollection<DatasetDbModel> Datasets {get;set;} = [];
-    public ICollection<BannedDbModel> Banned {get;set;} = [];
-    public ICollection<BannedDbModel> BannedBy {get;set;} = [];
-    public ICollection<ReportDbModel> Reports {get;set;} = [];
-    public ICollection<SchemeDbModel> Schemes {get;set;} = [];
-    public ICollection<MarkedDbModel> Marks {get;set;} = [];
+    public ICollection<DatasetDbModel> Datasets { get; set; } = [];
+    public ICollection<BannedDbModel> Banned { get; set; } = [];
+    public ICollection<BannedDbModel> BannedBy { get; set; } = [];
+    public ICollection<ReportDbModel> Reports { get; set; } = [];
+    public ICollection<SchemeDbModel> Schemes { get; set; } = [];
+    public ICollection<MarkedDbModel> Marks { get; set; } = [];
 
 }

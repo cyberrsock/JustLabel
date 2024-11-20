@@ -54,7 +54,7 @@ public class UserRepositoryUnitTests
         Assert.Equal(user2.Username, users[1].Username);
         Assert.Equal(user2.Email, users[1].Email);
     }
-    
+
     [Fact]
     public void TestBanUser()
     {

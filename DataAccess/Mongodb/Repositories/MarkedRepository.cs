@@ -166,7 +166,7 @@ public class MarkedRepositoryMongoDb : IMarkedRepository
         if (marked is not null)
         {
             marked.IsBlocked = model.IsBlocked;
-             _context.SaveChanges();
+            _context.SaveChanges();
         }
 
         _logger.Debug($"Marked ID{model.Id} successfully updated");

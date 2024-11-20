@@ -57,27 +57,27 @@ public class MarkedServiceIntegrationTests : BaseServiceIntegrationTests
             .WithId(1)
             .WithCreatorId(1)
             .Build();
-        
+
         context.Datasets.Add(dataset1);
 
         var image1 = new ImageDbModelBuilder()
             .WithId(1)
             .WithDatasetId(1)
             .Build();
-        
+
         context.Images.Add(image1);
 
         var label1 = new LabelDbModelBuilder()
             .WithId(1)
             .Build();
-        
+
         context.Labels.Add(label1);
 
         var scheme1 = new SchemeDbModelBuilder()
             .WithId(1)
             .WithCreatorId(1)
             .Build();
-        
+
         context.Schemes.Add(scheme1);
 
         context.SaveChanges();
@@ -98,10 +98,10 @@ public class MarkedServiceIntegrationTests : BaseServiceIntegrationTests
             .WithCreatorId(1)
             .WithAreaModels([])
             .Build();
-        
+
         // Act
         _markedService.Create(markedModel);
-        
+
         // Assert
         var marks = (from m in context.Marked select m).ToList();
         Assert.Single(marks);
@@ -123,7 +123,7 @@ public class MarkedServiceIntegrationTests : BaseServiceIntegrationTests
 
         // Act
         var exception = Assert.Throws<MarkedException>(() => _markedService.Create(markedModel));
-        
+
         // Assert
         Assert.Equal("CreatorId does not exist in the users list", exception.Message);
     }
@@ -180,7 +180,7 @@ public class MarkedServiceIntegrationTests : BaseServiceIntegrationTests
 
         // Act
         var exception = Assert.Throws<MarkedException>(() => _markedService.Get(markedModel));
-        
+
         // Assert
         Assert.Equal("Marked not found", exception.Message);
     }
@@ -253,7 +253,7 @@ public class MarkedServiceIntegrationTests : BaseServiceIntegrationTests
         context.Marked.Add(MarkedDbModelFactory.Create(markedModels[0]));
         context.Marked.Add(MarkedDbModelFactory.Create(markedModels[1]));
         context.SaveChanges();
-        
+
         // Act
         var result = _markedService.Get(datasetId, adminId);
 
@@ -280,7 +280,7 @@ public class MarkedServiceIntegrationTests : BaseServiceIntegrationTests
         context.Marked.Add(MarkedDbModelFactory.Create(markedModels[1]));
         context.Marked.Add(MarkedDbModelFactory.Create(markedModels[2]));
         context.SaveChanges();
-        
+
         // Act
         var result = _markedService.Get(datasetId, adminId);
 

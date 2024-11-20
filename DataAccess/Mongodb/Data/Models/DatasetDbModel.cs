@@ -12,7 +12,7 @@ public class DatasetDbModel
     [Key]
     [Column("id")]
     [BsonId]
-    public int Id { get; set; } 
+    public int Id { get; set; }
 
     [Column("title")]
     public string Title { get; set; }

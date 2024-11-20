@@ -14,7 +14,7 @@ public class ImageRepositoryUnitTests
     public ImageRepositoryUnitTests()
     {
         _mockFactory = new MockDbContextFactory();
-        _imageRepository = new (_mockFactory.MockContext.Object);
+        _imageRepository = new(_mockFactory.MockContext.Object);
     }
 
     [Fact]
@@ -83,7 +83,7 @@ public class ImageRepositoryUnitTests
     {
         // Arrange
         var imageDbo = ImageDbModelFactory.Create(1, 5, "path/to/image.jpg", 1920, 1080);
-        
+
         List<ImageDbModel> images = [imageDbo];
         _mockFactory.SetImageList(images);
 

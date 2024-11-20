@@ -90,7 +90,7 @@ public class AuthServiceIntegrationTests : BaseServiceIntegrationTests
             .WithSalt("someSalt")
             .WithRefreshToken("someToken")
             .Build();
-        
+
         context.Users.Add(UserDbModelFactory.Create(getUser));
         context.SaveChanges();
 

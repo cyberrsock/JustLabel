@@ -18,7 +18,7 @@ public class AreaDbModel
     [Column("labelID")]
     public int LabelId { get; set; }
 
-    [Column("coords")] 
+    [Column("coords")]
     public NpgsqlPoint[] Coords { get; set; }
 
     // [Column("coords")] 
@@ -30,8 +30,8 @@ public class AreaDbModel
 
     public LabelDbModel? Label { get; set; }
 
-    public ICollection<MarkedDbModel> Marks {get;set;} = [];
-    public ICollection<MarkedAreaDbModel> MarksAreas {get;set;} = [];
+    public ICollection<MarkedDbModel> Marks { get; set; } = [];
+    public ICollection<MarkedAreaDbModel> MarksAreas { get; set; } = [];
 }
 
 public class DbPoint

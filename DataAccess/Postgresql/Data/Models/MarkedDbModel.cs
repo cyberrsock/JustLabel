@@ -35,8 +35,8 @@ public class MarkedDbModel
     public ImageDbModel? Image { get; set; }
     public UserDbModel? User { get; set; }
 
-    public ICollection<AreaDbModel> Areas {get;set;} = [];
-    public ICollection<MarkedAreaDbModel> MarksAreas {get;set;} = [];
-    public ICollection<ReportDbModel> Reports {get;set;} = [];
+    public ICollection<AreaDbModel> Areas { get; set; } = [];
+    public ICollection<MarkedAreaDbModel> MarksAreas { get; set; } = [];
+    public ICollection<ReportDbModel> Reports { get; set; } = [];
 
 }

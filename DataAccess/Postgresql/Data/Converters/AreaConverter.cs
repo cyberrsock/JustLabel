@@ -9,7 +9,8 @@ public static class AreaConverter
 {
     public static AreaDbModel? CoreToDbModel(AreaModel? model)
     {
-        return model is null ? null : new () {
+        return model is null ? null : new()
+        {
             Id = model.Id,
             LabelId = model.LabelId,
             Coords = model.Coords.Select(coord => new NpgsqlPoint { X = coord.X, Y = coord.Y }).ToArray()
@@ -18,7 +19,8 @@ public static class AreaConverter
 
     public static AreaModel? DbToCoreModel(AreaDbModel? model)
     {
-        return model is null ? null : new () {
+        return model is null ? null : new()
+        {
             Id = model.Id,
             LabelId = model.LabelId,
             Coords = model.Coords.Select(coord => new Point { X = coord.X, Y = coord.Y }).ToArray()

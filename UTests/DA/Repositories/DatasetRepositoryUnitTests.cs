@@ -14,7 +14,7 @@ public class DatasetRepositoryUnitTests
     public DatasetRepositoryUnitTests()
     {
         _mockFactory = new MockDbContextFactory();
-        _datasetRepository = new (_mockFactory.MockContext.Object);
+        _datasetRepository = new(_mockFactory.MockContext.Object);
     }
 
     [Fact]
@@ -143,7 +143,7 @@ public class DatasetRepositoryUnitTests
 
         List<DatasetDbModel> datasets = [datasetDbo];
         _mockFactory.SetDatasetList(datasets);
-        
+
         // Act
         var resultDataset = _datasetRepository.Get(999);
 
@@ -161,7 +161,7 @@ public class DatasetRepositoryUnitTests
         // Arrange
         List<DatasetDbModel> datasets = [];
         _mockFactory.SetDatasetList(datasets);
-        
+
         // Act
         var addedDataset = _datasetRepository.Get(1);
 
@@ -191,7 +191,7 @@ public class DatasetRepositoryUnitTests
 
         List<DatasetDbModel> datasets = [datasetDbo1, datasetDbo2];
         _mockFactory.SetDatasetList(datasets);
-        
+
         // Act
         var resultDatasets = _datasetRepository.GetAll();
 
@@ -213,7 +213,7 @@ public class DatasetRepositoryUnitTests
         // Arrange
         List<DatasetDbModel> datasets = [];
         _mockFactory.SetDatasetList(datasets);
-        
+
         // Act
         var addedDatasets = _datasetRepository.GetAll();
 

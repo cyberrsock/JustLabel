@@ -16,7 +16,7 @@ public class LabelDbModel
     [Column("title")]
     public string Title { get; set; }
 
-    public ICollection<AreaDbModel> Areas {get;set;} = [];
-    public ICollection<SchemeDbModel> Schemes {get;set;} = [];
-    public ICollection<LabelSchemeDbModel> LabelsSchemes {get;set;} = [];
+    public ICollection<AreaDbModel> Areas { get; set; } = [];
+    public ICollection<SchemeDbModel> Schemes { get; set; } = [];
+    public ICollection<LabelSchemeDbModel> LabelsSchemes { get; set; } = [];
 }

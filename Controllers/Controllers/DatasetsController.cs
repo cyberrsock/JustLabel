@@ -70,7 +70,8 @@ public class DatasetsController : ControllerBase
 
         List<ImageModel> images = new();
 
-        DatasetModel dataset = new() {
+        DatasetModel dataset = new()
+        {
             Title = model.Title,
             Description = model.Description,
             CreatorId = userId
@@ -131,7 +132,7 @@ public class DatasetsController : ControllerBase
         foreach (var imagePath in imagePaths)
         {
             byte[] imageData = System.IO.File.ReadAllBytes(imagePath.Path);
-            imagesData.Add(new ArchiveInfo{ Id = imagePath.Id, Image = imageData });
+            imagesData.Add(new ArchiveInfo { Id = imagePath.Id, Image = imageData });
         }
 
         DatasetDTOModel to_dataset = new()

@@ -9,13 +9,13 @@ namespace JustLabel.Utilities;
 public static class JWTGenerator
 {
     private static readonly string secretKey = "superkey12345678superkey12345678";
-    
+
     public static string GenerateAccessToken(int id, bool isAdmin)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(secretKey);
         var isAdminClaim = isAdmin ? new System.Security.Claims.Claim("role", "admin") : new System.Security.Claims.Claim("role", "user");
-        
+
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new System.Security.Claims.ClaimsIdentity(new[]
@@ -26,12 +26,12 @@ public static class JWTGenerator
             Expires = DateTime.UtcNow.AddMinutes(900),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
-        
+
         var token = tokenHandler.CreateToken(tokenDescriptor);
 
         return tokenHandler.WriteToken(token);
     }
-    
+
     public static string GenerateRefreshToken(string accessToken)
     {
         DateTime dateTime = DateTime.UtcNow.AddMinutes(60);
@@ -54,7 +54,7 @@ public static class JWTGenerator
         string tokenExpirationDate = sBuilder.ToString();
         string randomData = Guid.NewGuid().ToString("N")[..12];
         string accessTokenLastPart = accessToken[^6..];
-        
+
         return tokenExpirationDate + randomData + accessTokenLastPart;
     }
 

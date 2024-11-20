@@ -43,10 +43,10 @@ public class MarkedServiceTests
         _mockUserRepository.Setup(u => u.GetUserById(1)).Returns(new UserModel());
         _mockSchemeRepository.Setup(s => s.Get(1)).Returns(new SchemeModel());
         _mockImageRepository.Setup(i => i.Get(1)).Returns(new ImageModel());
-        
+
         // Act
         _markedService.Create(markedModel);
-        
+
         // Assert
         _mockMarkedRepository.Verify(m => m.Create(markedModel), Times.Once);
     }
@@ -65,7 +65,7 @@ public class MarkedServiceTests
 
         // Act
         var exception = Assert.Throws<MarkedException>(() => _markedService.Create(markedModel));
-        
+
         // Assert
         Assert.Equal("CreatorId does not exist in the users list", exception.Message);
     }
@@ -93,7 +93,7 @@ public class MarkedServiceTests
 
         // Act
         var exception = Assert.Throws<MarkedException>(() => _markedService.Delete(id));
-       
+
         // Assert
         Assert.Equal("Not found", exception.Message);
     }
@@ -121,7 +121,7 @@ public class MarkedServiceTests
 
         // Act
         var exception = Assert.Throws<MarkedException>(() => _markedService.Get(markedModel));
-        
+
         // Assert
         Assert.Equal("Marked not found", exception.Message);
     }
@@ -181,7 +181,7 @@ public class MarkedServiceTests
             new MarkedModelBuilder().WithId(1).WithCreatorId(adminId).WithIsBlocked(true).Build(),
             new MarkedModelBuilder().WithId(2).WithIsBlocked(false).Build(),
         };
-        
+
         _mockMarkedRepository.Setup(m => m.Get_By_DatasetId(datasetId)).Returns(markedModels);
         _mockUserRepository.Setup(u => u.GetUserById(adminId)).Returns(new UserModel { IsAdmin = true });
 
@@ -204,7 +204,7 @@ public class MarkedServiceTests
             new MarkedModelBuilder().WithId(2).WithIsBlocked(true).Build(),
             new MarkedModelBuilder().WithId(3).WithIsBlocked(false).Build()
         };
-        
+
         _mockMarkedRepository.Setup(m => m.Get_By_DatasetId(datasetId)).Returns(markedModels);
         _mockUserRepository.Setup(u => u.GetUserById(adminId)).Returns(new UserModel { IsAdmin = false });
 
@@ -220,7 +220,7 @@ public class MarkedServiceTests
     {
         // Arrange
         var markedModel = new MarkedModelBuilder().WithId(1).Build();
-        
+
         // Act
         _markedService.Update_Rects(markedModel);
 
@@ -237,7 +237,7 @@ public class MarkedServiceTests
 
         // Act
         var exception = Assert.Throws<Exception>(() => _markedService.Update_Rects(markedModel));
-        
+
         // Assert
         Assert.Equal("Update Failed", exception.Message);
     }
@@ -248,7 +248,7 @@ public class MarkedServiceTests
         // Arrange
         var markedModel = new MarkedModelBuilder().WithId(1).WithCreatorId(1).Build();
         _mockUserRepository.Setup(u => u.GetUserById(1)).Returns(new UserModel { IsAdmin = true });
-        
+
         // Act
         _markedService.Update_Block(markedModel);
 
@@ -265,7 +265,7 @@ public class MarkedServiceTests
 
         // Act
         var exception = Assert.Throws<AdminUserException>(() => _markedService.Update_Block(markedModel));
-        
+
         // Assert
         Assert.Equal("The user with AdminId is not admin", exception.Message);
     }

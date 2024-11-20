@@ -7,7 +7,7 @@ namespace JustLabel.Utilities;
 public class SaltedHash
 {
     private const int SaltSize = 16;
-    
+
     public static string GenerateSaltedHash(string password, string salt)
     {
         byte[] saltBytes = Convert.FromBase64String(salt);

@@ -8,6 +8,6 @@ public interface ILabelRepository
     int Add(LabelModel model);
 
     List<LabelModel> Get();
-    
+
     void Delete(int id);
 }

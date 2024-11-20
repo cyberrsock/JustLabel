@@ -13,7 +13,7 @@ public class UserRepositoryIntegrationTests : BaseRepositoryIntegrationTests
 
     public UserRepositoryIntegrationTests(DatabaseFixture fixture) : base(fixture)
     {
-        _userRepository = new (Fixture.CreateContext());
+        _userRepository = new(Fixture.CreateContext());
     }
 
     private JustLabel.Data.AppDbContext Initialize()
@@ -63,7 +63,7 @@ public class UserRepositoryIntegrationTests : BaseRepositoryIntegrationTests
         Assert.Equal(user2.Username, users[1].Username);
         Assert.Equal(user2.Email, users[1].Email);
     }
-    
+
     [Fact]
     public void TestBanUser()
     {
@@ -143,7 +143,7 @@ public class UserRepositoryIntegrationTests : BaseRepositoryIntegrationTests
     public void TestGetUserByEmailNotFound()
     {
         using var context = Initialize();
-        
+
         // Arrange
 
         // Act
@@ -157,7 +157,7 @@ public class UserRepositoryIntegrationTests : BaseRepositoryIntegrationTests
     public void TestGetUserById()
     {
         using var context = Initialize();
-        
+
         // Arrange
         var userDbModel = UserDbModelFactory.Create(123, "testuser", "test@example.com", "password", "salt", "token", false, false);
         context.Users.Add(userDbModel);

@@ -7,7 +7,8 @@ public static class DatasetConverter
 {
     public static DatasetDbModel? CoreToDbModel(DatasetModel? model)
     {
-        return model is null ? null : new () {
+        return model is null ? null : new()
+        {
             Id = model.Id,
             Title = model.Title,
             Description = model.Description,
@@ -18,7 +19,8 @@ public static class DatasetConverter
 
     public static DatasetModel? DbToCoreModel(DatasetDbModel? model)
     {
-        return model is null ? null : new () {
+        return model is null ? null : new()
+        {
             Id = model.Id,
             Title = model.Title,
             Description = model.Description,

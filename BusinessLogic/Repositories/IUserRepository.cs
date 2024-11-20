@@ -8,7 +8,7 @@ public interface IUserRepository
     void Add(UserModel model);
 
     void Ban(BannedModel model);
-    
+
     void Unban(int id);
 
     void UnbanByBanId(int user_id, int ban_id);
@@ -22,7 +22,7 @@ public interface IUserRepository
     UserModel? GetUserById(int id);
 
     UserModel? GetUserByUsername(string username);
-    
+
     UserModel? GetUserByEmail(string email);
 
     void UpdateToken(UserModel model);

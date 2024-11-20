@@ -17,7 +17,7 @@ public class UserService : IUserService
     private IUserRepository _userRepository;
     private readonly ILogger _logger;
     private readonly IMemoryCache _cache;
-    
+
     public UserService(IUserRepository userRepository, IMemoryCache cache)
     {
         _userRepository = userRepository;
@@ -108,7 +108,7 @@ public class UserService : IUserService
 
         if (_userRepository.IsBan(id) is null)
         {
-             _logger.Error($"User ID{id} is not banned");
+            _logger.Error($"User ID{id} is not banned");
             throw new UnbannedUserException("The user is not banned");
         }
 
@@ -125,7 +125,7 @@ public class UserService : IUserService
 
         if (_userRepository.IsBan(user_id) is null)
         {
-             _logger.Error($"User ID{user_id} is not banned");
+            _logger.Error($"User ID{user_id} is not banned");
             throw new UnbannedUserException("The user is not banned");
         }
 
@@ -153,7 +153,8 @@ public class UserService : IUserService
     public int IsBanned(int id)
     {
         BannedModel model = _userRepository.IsBan(id);
-        if (model is not null) {
+        if (model is not null)
+        {
             return model.Id;
         }
         return 0;
@@ -162,7 +163,7 @@ public class UserService : IUserService
     public int SendMailPassword(int id)
     {
         var user = _userRepository.GetUserById(id);
-        
+
         if (user is null)
         {
             _logger.Error($"User ID{id} does not exist");
@@ -200,8 +201,8 @@ public class UserService : IUserService
                 IsBodyHtml = true
             };
 
-            using (var smtpClient = new SmtpClient(Environment.GetEnvironmentVariable("SMTP_HOST")) 
-            { 
+            using (var smtpClient = new SmtpClient(Environment.GetEnvironmentVariable("SMTP_HOST"))
+            {
                 Port = 587,
                 Credentials = new NetworkCredential(Environment.GetEnvironmentVariable("USER_EMAIL"), Environment.GetEnvironmentVariable("EMAIL_PASSWORD")),
                 EnableSsl = true,

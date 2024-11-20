@@ -34,7 +34,7 @@ public class LabelServiceIntegrationTests : BaseServiceIntegrationTests
         var user1 = new UserDbModelBuilder()
             .WithId(1)
             .Build();
-        
+
         context.Users.Add(user1);
         context.SaveChanges();
 
@@ -50,7 +50,7 @@ public class LabelServiceIntegrationTests : BaseServiceIntegrationTests
         var label = new LabelModelBuilder()
             .WithTitle("test label")
             .Build();
-        
+
         // Act
         int labelId = _labelService.Add(label);
 
@@ -69,7 +69,7 @@ public class LabelServiceIntegrationTests : BaseServiceIntegrationTests
             .WithId(1)
             .WithTitle("Test Label")
             .Build();
-        
+
         var newLabel = new LabelModelBuilder()
             .WithId(2)
             .WithTitle("test label")

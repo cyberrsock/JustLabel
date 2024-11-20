@@ -14,10 +14,10 @@ public class ReportRepositoryIntegrationTests : BaseRepositoryIntegrationTests
 
     public ReportRepositoryIntegrationTests(DatabaseFixture fixture) : base(fixture)
     {
-        _reportRepository = new (Fixture.CreateContext());
+        _reportRepository = new(Fixture.CreateContext());
     }
 
-    
+
     private JustLabel.Data.AppDbContext Initialize()
     {
         var context = Fixture.CreateContext();
@@ -25,7 +25,7 @@ public class ReportRepositoryIntegrationTests : BaseRepositoryIntegrationTests
         var user1 = new UserDbModelBuilder()
             .WithId(1)
             .Build();
-        
+
         var user2 = new UserDbModelBuilder()
             .WithId(2)
             .Build();
@@ -37,27 +37,27 @@ public class ReportRepositoryIntegrationTests : BaseRepositoryIntegrationTests
             .WithId(1)
             .WithCreatorId(1)
             .Build();
-        
+
         context.Datasets.Add(dataset1);
 
         var image1 = new ImageDbModelBuilder()
             .WithId(1)
             .WithDatasetId(1)
             .Build();
-        
+
         context.Images.Add(image1);
 
         var label1 = new LabelDbModelBuilder()
             .WithId(1)
             .Build();
-        
+
         context.Labels.Add(label1);
 
         var scheme1 = new SchemeDbModelBuilder()
             .WithId(1)
             .WithCreatorId(1)
             .Build();
-        
+
         context.Schemes.Add(scheme1);
 
         var mark1 = new MarkedDbModelBuilder()
@@ -66,7 +66,7 @@ public class ReportRepositoryIntegrationTests : BaseRepositoryIntegrationTests
             .WithSchemeId(1)
             .WithCreatorId(1)
             .Build();
-        
+
         context.Marked.Add(mark1);
 
         context.SaveChanges();
@@ -104,7 +104,7 @@ public class ReportRepositoryIntegrationTests : BaseRepositoryIntegrationTests
     public void TestCreateReportInNonEmptyTable()
     {
         using var context = Initialize();
-        
+
         // Arrange
         var report1 = ReportDbModelFactory.Create(
             1,

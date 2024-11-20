@@ -21,7 +21,7 @@ public class DatabaseFixture
     public DatabaseFixture()
     {
         using var context = CreateContext();
-        
+
         context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
 

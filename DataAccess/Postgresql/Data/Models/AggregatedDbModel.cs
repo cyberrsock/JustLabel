@@ -8,7 +8,7 @@ public class AggregatedDbModel
     [Key]
     [Column("imageid")]
     public int ImageId { get; set; }
-    
+
     [Key]
     [Column("labelid")]
     public int LabelId { get; set; }

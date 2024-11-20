@@ -30,7 +30,7 @@ public class ReportRepository : IReportRepository
     }
 
     public List<ReportModel> GetAll()
-    {      
+    {
         _logger.Debug($"Attempt to get reports");
         var reportDbModels = _context.Reports.ToList();
         List<ReportModel> res = reportDbModels.Select(model => ReportConverter.DbToCoreModel(model)).ToList();

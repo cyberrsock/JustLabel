@@ -5,9 +5,9 @@ using MongoDB.EntityFrameworkCore.Extensions;
 
 namespace JustLabel.DataMongoDb;
 
-public class AppDbContextMongoDb: DbContext
+public class AppDbContextMongoDb : DbContext
 {
-    public AppDbContextMongoDb(DbContextOptions<AppDbContextMongoDb> options): base(options) {}
+    public AppDbContextMongoDb(DbContextOptions<AppDbContextMongoDb> options) : base(options) { }
 
     public DbSet<DatasetDbModel> Datasets { get; set; }
     public DbSet<ImageDbModel> Images { get; set; }
@@ -21,7 +21,7 @@ public class AppDbContextMongoDb: DbContext
     public DbSet<UserDbModel> Users { get; set; }
     public DbSet<BannedDbModel> Banned { get; set; }
 
-     protected override void OnModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 

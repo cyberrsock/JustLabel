@@ -7,7 +7,8 @@ public static class UserConverter
 {
     public static UserDbModel? CoreToDbModel(UserModel? model)
     {
-        return model is null ? null : new () {
+        return model is null ? null : new()
+        {
             Id = model.Id,
             Username = model.Username,
             Email = model.Email,
@@ -21,7 +22,8 @@ public static class UserConverter
 
     public static UserModel? DbToCoreModel(UserDbModel? model)
     {
-        return model is null ? null : new () {
+        return model is null ? null : new()
+        {
             Id = model.Id,
             Username = model.Username,
             Email = model.Email,

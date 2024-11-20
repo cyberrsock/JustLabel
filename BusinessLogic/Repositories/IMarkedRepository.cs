@@ -20,7 +20,7 @@ public interface IMarkedRepository
     MarkedModel Get(MarkedModel model);
 
     List<MarkedModel> GetAll();
-    
+
     void Delete(int id);
 
     List<AggregatedModel> GetAggregatedData(int datasetId, int schemeId);

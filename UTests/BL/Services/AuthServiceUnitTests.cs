@@ -28,7 +28,7 @@ public class AuthServiceUnitTests
             .WithPassword("strongPassword")
             .WithEmail("user@example.com")
             .Build();
-        
+
         List<UserModel> users = [];
 
         var callCount = 0;

@@ -15,7 +15,7 @@ public class MarkedRepositoryIntegrationTests : BaseRepositoryIntegrationTests
 
     public MarkedRepositoryIntegrationTests(DatabaseFixture fixture) : base(fixture)
     {
-        _markedRepository = new (Fixture.CreateContext());
+        _markedRepository = new(Fixture.CreateContext());
     }
 
     private JustLabel.Data.AppDbContext Initialize()
@@ -32,27 +32,27 @@ public class MarkedRepositoryIntegrationTests : BaseRepositoryIntegrationTests
             .WithId(1)
             .WithCreatorId(1)
             .Build();
-        
+
         context.Datasets.Add(dataset1);
 
         var image1 = new ImageDbModelBuilder()
             .WithId(1)
             .WithDatasetId(1)
             .Build();
-        
+
         context.Images.Add(image1);
 
         var label1 = new LabelDbModelBuilder()
             .WithId(1)
             .Build();
-        
+
         context.Labels.Add(label1);
 
         var scheme1 = new SchemeDbModelBuilder()
             .WithId(1)
             .WithCreatorId(1)
             .Build();
-        
+
         context.Schemes.Add(scheme1);
 
         context.SaveChanges();
@@ -102,8 +102,8 @@ public class MarkedRepositoryIntegrationTests : BaseRepositoryIntegrationTests
             false,
             DateTime.Now,
             [
-                AreaModelFactory.Create(1, 1, [(1,2), (2,3)]),
-                AreaModelFactory.Create(2, 1, [(1,2), (2,3)]),
+                AreaModelFactory.Create(1, 1, [(1, 2), (2, 3)]),
+                AreaModelFactory.Create(2, 1, [(1, 2), (2, 3)]),
             ]
         );
 
@@ -181,7 +181,7 @@ public class MarkedRepositoryIntegrationTests : BaseRepositoryIntegrationTests
             false,
             DateTime.Now
         );
-        
+
         context.Marked.Add(markedDbModel);
         context.SaveChanges();
 
@@ -207,7 +207,7 @@ public class MarkedRepositoryIntegrationTests : BaseRepositoryIntegrationTests
             false,
             DateTime.Now
         );
-        
+
         context.Marked.Add(markedDbModel);
         context.SaveChanges();
 
@@ -232,7 +232,7 @@ public class MarkedRepositoryIntegrationTests : BaseRepositoryIntegrationTests
             false,
             DateTime.Now
         );
-        
+
         context.Marked.Add(markedDbModel);
         context.SaveChanges();
 
@@ -258,7 +258,7 @@ public class MarkedRepositoryIntegrationTests : BaseRepositoryIntegrationTests
             false,
             DateTime.Now
         );
-        
+
         context.Marked.Add(markedDbModel);
         context.SaveChanges();
 
@@ -283,7 +283,7 @@ public class MarkedRepositoryIntegrationTests : BaseRepositoryIntegrationTests
             false,
             DateTime.Now
         );
-        
+
         context.Marked.Add(markedDbModel);
         context.SaveChanges();
 
@@ -309,7 +309,7 @@ public class MarkedRepositoryIntegrationTests : BaseRepositoryIntegrationTests
             false,
             DateTime.Now
         );
-        
+
         context.Marked.Add(markedDbModel);
         context.SaveChanges();
 
@@ -334,8 +334,8 @@ public class MarkedRepositoryIntegrationTests : BaseRepositoryIntegrationTests
             false,
             DateTime.Now,
             [
-                AreaModelFactory.Create(1, 1, [(1,2), (2,3)]),
-                AreaModelFactory.Create(2, 1, [(1,2), (2,3)]),
+                AreaModelFactory.Create(1, 1, [(1, 2), (2, 3)]),
+                AreaModelFactory.Create(2, 1, [(1, 2), (2, 3)]),
             ]
         );
 
@@ -389,10 +389,10 @@ public class MarkedRepositoryIntegrationTests : BaseRepositoryIntegrationTests
             false,
             DateTime.Now,
             [
-                AreaModelFactory.Create(1, 1, [(1,2), (2,3)])
+                AreaModelFactory.Create(1, 1, [(1, 2), (2, 3)])
             ]
         );
-        
+
         context.Marked.Add(MarkedDbModelFactory.Create(markedModel));
         context.SaveChanges();
 
@@ -420,7 +420,7 @@ public class MarkedRepositoryIntegrationTests : BaseRepositoryIntegrationTests
             false,
             DateTime.Now,
             [
-                AreaModelFactory.Create(1, 1, [(1,2), (2,3)])
+                AreaModelFactory.Create(1, 1, [(1, 2), (2, 3)])
             ]
         );
         List<MarkedDbModel> marks = [
@@ -460,7 +460,7 @@ public class MarkedRepositoryIntegrationTests : BaseRepositoryIntegrationTests
                 DateTime.Now
             )
         ];
-        
+
         context.Marked.Add(marks[0]);
         context.SaveChanges();
 

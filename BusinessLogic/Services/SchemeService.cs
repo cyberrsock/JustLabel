@@ -63,9 +63,10 @@ public class SchemeService : ISchemeService
             _logger.Error($"Scheme ID{id} with this id does not exist");
             throw new SchemeException("Scheme with this id does not exist");
         }
-        
+
         var marked = _markedRepository.Get_By_SchemeId(id);
-        foreach (var m in marked) {
+        foreach (var m in marked)
+        {
             _markedRepository.Delete(m.Id);
         }
 
@@ -80,7 +81,8 @@ public class SchemeService : ISchemeService
     {
         _logger.Debug($"Attempt to get scheme ID{id}");
         SchemeModel res = _schemeRepository.Get(id);
-        if (res == null) {
+        if (res == null)
+        {
             _logger.Error($"Scheme ID{id} with this id does not exist");
             throw new SchemeException("Scheme with this id does not exist");
         }

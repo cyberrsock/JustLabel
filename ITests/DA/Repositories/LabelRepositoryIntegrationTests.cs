@@ -13,7 +13,7 @@ public class LabelRepositoryIntegrationTests : BaseRepositoryIntegrationTests
 
     public LabelRepositoryIntegrationTests(DatabaseFixture fixture) : base(fixture)
     {
-        _labelRepository = new (Fixture.CreateContext());
+        _labelRepository = new(Fixture.CreateContext());
     }
 
     private JustLabel.Data.AppDbContext Initialize()

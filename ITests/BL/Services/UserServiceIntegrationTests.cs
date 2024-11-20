@@ -121,7 +121,7 @@ public class UserServiceIntegrationTests : BaseServiceIntegrationTests
             .WithId(2)
             .WithIsAdmin(true)
             .Build();
-        
+
         var targetUser = new UserDbModelBuilder()
             .WithId(1)
             .WithIsAdmin(false)
@@ -146,7 +146,7 @@ public class UserServiceIntegrationTests : BaseServiceIntegrationTests
 
         // Arrange
         var bannedModel = new BannedModelBuilder().WithUserId(1).WithAdminId(2).Build();
-        
+
         // Act
         var exception = Assert.Throws<UserNotExistsException>(() => _userService.Ban(bannedModel));
 

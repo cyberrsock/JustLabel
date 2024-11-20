@@ -12,6 +12,6 @@ public interface ISchemeRepository
     void Delete(int id);
 
     SchemeModel? Get(int id);
-    
+
     List<SchemeModel> GetAll();
 }

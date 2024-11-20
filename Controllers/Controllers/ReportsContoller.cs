@@ -38,7 +38,7 @@ public class ReportsController : ControllerBase
             Comment = model.Comment,
             LoadDatetime = model.LoadDatetime
         };
-        
+
         try
         {
             _reportService.Create(report);

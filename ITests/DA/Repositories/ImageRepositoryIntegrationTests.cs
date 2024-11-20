@@ -14,7 +14,7 @@ public class ImageRepositoryIntegrationTests : BaseRepositoryIntegrationTests
 
     public ImageRepositoryIntegrationTests(DatabaseFixture fixture) : base(fixture)
     {
-        _imageRepository = new (Fixture.CreateContext());
+        _imageRepository = new(Fixture.CreateContext());
     }
 
     private JustLabel.Data.AppDbContext Initialize()
@@ -31,12 +31,12 @@ public class ImageRepositoryIntegrationTests : BaseRepositoryIntegrationTests
             .WithId(5)
             .WithCreatorId(1)
             .Build();
-        
+
         var dataset2 = new DatasetDbModelBuilder()
             .WithId(6)
             .WithCreatorId(1)
             .Build();
-        
+
         context.Datasets.Add(dataset1);
         context.Datasets.Add(dataset2);
 
@@ -116,7 +116,7 @@ public class ImageRepositoryIntegrationTests : BaseRepositoryIntegrationTests
 
         // Arrange
         var imageDbo = ImageDbModelFactory.Create(1, 5, "path/to/image.jpg", 1920, 1080);
-        
+
         context.Images.Add(imageDbo);
         context.SaveChanges();
 

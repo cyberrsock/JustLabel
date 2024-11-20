@@ -59,7 +59,7 @@ public class UserRepository : IUserRepository
         {
             _logger.Debug($"Attempt to get a user by username {username}");
             var userDbModel = _context.Users.FirstOrDefault(u => u.Username == username);
-            
+
             if (userDbModel == null)
             {
                 _logger.Debug($"User with username {username} not found");

@@ -14,7 +14,7 @@ public class SchemeRepositoryIntegrationTests : BaseRepositoryIntegrationTests
 
     public SchemeRepositoryIntegrationTests(DatabaseFixture fixture) : base(fixture)
     {
-        _schemeRepository = new (Fixture.CreateContext());
+        _schemeRepository = new(Fixture.CreateContext());
     }
 
     private JustLabel.Data.AppDbContext Initialize()
@@ -60,7 +60,7 @@ public class SchemeRepositoryIntegrationTests : BaseRepositoryIntegrationTests
         Assert.Equal(scheme.CreatorId, schemes[0].CreatorId);
         Assert.Empty(labelSchemes);
     }
-    
+
     [Fact]
     public void TestAddSchemeWithLabels()
     {
@@ -104,7 +104,7 @@ public class SchemeRepositoryIntegrationTests : BaseRepositoryIntegrationTests
 
         // Arrange
         var scheme = SchemeModelFactory.Create(1, "Scheme to Delete", "Description", 1, [], DateTime.Now);
-        
+
         context.Schemes.Add(SchemeDbModelFactory.Create(scheme));
         context.SaveChanges();
 
@@ -183,7 +183,7 @@ public class SchemeRepositoryIntegrationTests : BaseRepositoryIntegrationTests
         var resultScheme = _schemeRepository.Get(1);
 
         // Assert
-        Assert.Null(resultScheme); 
+        Assert.Null(resultScheme);
     }
 
     [Fact]

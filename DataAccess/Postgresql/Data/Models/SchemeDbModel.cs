@@ -27,8 +27,8 @@ public class SchemeDbModel
 
     public UserDbModel? User { get; set; }
 
-    public ICollection<MarkedDbModel> Marks {get;set;} = [];
-    public ICollection<LabelDbModel> Labels {get;set;} = [];
-    public ICollection<LabelSchemeDbModel> LabelsSchemes {get;set;} = [];
+    public ICollection<MarkedDbModel> Marks { get; set; } = [];
+    public ICollection<LabelDbModel> Labels { get; set; } = [];
+    public ICollection<LabelSchemeDbModel> LabelsSchemes { get; set; } = [];
 
 }

@@ -29,7 +29,7 @@ public class LabelServiceUnitTests
         var label = new LabelModelBuilder()
             .WithTitle("test label")
             .Build();
-        
+
         List<LabelModel> existingLabels = new List<LabelModel>();
 
         _mockLabelRepository.Setup(s => s.Get()).Returns(existingLabels);
@@ -52,7 +52,7 @@ public class LabelServiceUnitTests
             .WithId(1)
             .WithTitle("Test Label")
             .Build();
-        
+
         var newLabel = new LabelModelBuilder()
             .WithId(2)
             .WithTitle("test label")

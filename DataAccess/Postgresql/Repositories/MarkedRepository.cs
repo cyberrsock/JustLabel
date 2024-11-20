@@ -98,7 +98,7 @@ public class MarkedRepository : IMarkedRepository
 
     public MarkedModel Get(MarkedModel model)
     {
-         _logger.Debug($"Attempt to get a marked ID{model.Id}");
+        _logger.Debug($"Attempt to get a marked ID{model.Id}");
         MarkedModel res = MarkedConverter.DbToCoreModel(_context.Marked.FirstOrDefault(u => u.ImageId == model.ImageId && u.CreatorId == model.CreatorId && u.SchemeId == model.SchemeId),
         _context.MarkedAreas.ToList(), _context.Areas.ToList());
         _logger.Debug($"Marked ID{model.Id} successfully got");
@@ -154,7 +154,7 @@ public class MarkedRepository : IMarkedRepository
         if (marked is not null)
         {
             marked.IsBlocked = model.IsBlocked;
-             _context.SaveChanges();
+            _context.SaveChanges();
         }
 
         _logger.Debug($"Marked ID{model.Id} successfully updated");
@@ -174,7 +174,7 @@ public class MarkedRepository : IMarkedRepository
     public List<AggregatedModel> GetAggregatedData(int datasetId, int schemeId)
     {
         _logger.Debug($"Attempting to execute calculate_aggregation SQL function {datasetId}, {schemeId}");
-        var aggregatedData = _context.Aggregated.FromSqlRaw($"SELECT * FROM calc_aggregation({datasetId}, {schemeId}, 0.5, 2)").AsEnumerable().Select(u => AggregatedConverter.DbToCoreModel(u)).ToList();
+        var aggregatedData = _context.Aggregated.FromSql($"SELECT * FROM calc_aggregation({datasetId}, {schemeId}, 0.5, 2)").AsEnumerable().Select(u => AggregatedConverter.DbToCoreModel(u)).ToList();
         _logger.Debug("calculate_aggregation SQL function executed");
         return aggregatedData;
     }

@@ -30,7 +30,7 @@ namespace UnitTests.Repositories
                 false,
                 DateTime.Now,
                 [
-                    AreaModelFactory.Create(1, 1, [(1,2), (2,3)])
+                    AreaModelFactory.Create(1, 1, [(1, 2), (2, 3)])
                 ]
             );
 
@@ -58,8 +58,8 @@ namespace UnitTests.Repositories
                 false,
                 DateTime.Now,
                 [
-                    AreaModelFactory.Create(1, 1, [(1,2), (2,3)]),
-                    AreaModelFactory.Create(2, 2, [(1,2), (2,3)]),
+                    AreaModelFactory.Create(1, 1, [(1, 2), (2, 3)]),
+                    AreaModelFactory.Create(2, 2, [(1, 2), (2, 3)]),
                 ]
             );
 
@@ -272,7 +272,7 @@ namespace UnitTests.Repositories
             );
             List<MarkedDbModel> marks = [markedDbModel];
             _mockFactory.SetMarkedList(marks);
-            
+
             List<DatasetDbModel> datasets = [
                 DatasetDbModelFactory.Create(
                     1,
@@ -319,7 +319,7 @@ namespace UnitTests.Repositories
             );
             List<MarkedDbModel> marks = [markedDbModel];
             _mockFactory.SetMarkedList(marks);
-            
+
             List<DatasetDbModel> datasets = [
                 DatasetDbModelFactory.Create(
                     1,
@@ -363,8 +363,8 @@ namespace UnitTests.Repositories
                 false,
                 DateTime.Now,
                 [
-                    AreaModelFactory.Create(1, 1, [(1,2), (2,3)]),
-                    AreaModelFactory.Create(2, 2, [(1,2), (2,3)]),
+                    AreaModelFactory.Create(1, 1, [(1, 2), (2, 3)]),
+                    AreaModelFactory.Create(2, 2, [(1, 2), (2, 3)]),
                 ]
             );
             List<MarkedDbModel> marks = [];
@@ -417,7 +417,7 @@ namespace UnitTests.Repositories
                 false,
                 DateTime.Now,
                 [
-                    AreaModelFactory.Create(1, 1, [(1,2), (2,3)])
+                    AreaModelFactory.Create(1, 1, [(1, 2), (2, 3)])
                 ]
             );
 
@@ -447,7 +447,7 @@ namespace UnitTests.Repositories
                 false,
                 DateTime.Now,
                 [
-                    AreaModelFactory.Create(1, 1, [(1,2), (2,3)])
+                    AreaModelFactory.Create(1, 1, [(1, 2), (2, 3)])
                 ]
             );
             List<MarkedDbModel> marks = [

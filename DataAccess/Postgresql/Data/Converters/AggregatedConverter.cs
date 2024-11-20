@@ -7,7 +7,8 @@ public static class AggregatedConverter
 {
     public static AggregatedDbModel? CoreToDbModel(AggregatedModel? model)
     {
-        return model is null ? null : new () {
+        return model is null ? null : new()
+        {
             ImageId = model.ImageId,
             LabelId = model.LabelId,
             X1 = model.X1,
@@ -19,7 +20,8 @@ public static class AggregatedConverter
 
     public static AggregatedModel? DbToCoreModel(AggregatedDbModel? model)
     {
-        return model is null ? null : new () {
+        return model is null ? null : new()
+        {
             ImageId = model.ImageId,
             LabelId = model.LabelId,
             X1 = model.X1,
