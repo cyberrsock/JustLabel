@@ -6,7 +6,11 @@ WORKDIR /app
 # Копируем все файлы проекта
 COPY . ./
 
+WORKDIR /app/GUI
+
+RUN dotnet build
+
 WORKDIR /app/E2ETests
 
 # Запуск приложения
-CMD ["dotnet", "build"]
+CMD ["dotnet", "test"]
