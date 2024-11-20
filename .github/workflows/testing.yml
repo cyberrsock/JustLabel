@@ -30,7 +30,7 @@ jobs:
           echo "EMAIL_PASSWORD=${EMAIL_PASSWORD}" >> .env
           echo "STATIC_EMAIL_CODE=${STATIC_EMAIL_CODE}" >> .env
 
-      - name: Run E2E tests
+      - name: Run static tests
         run: make docker-up -i
       
       - name: Remove env
