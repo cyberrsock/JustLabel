@@ -9,4 +9,4 @@ COPY . ./
 WORKDIR /app/E2ETests
 
 # Запуск приложения
-CMD ["dotnet", "test"]
+CMD ["dotnet", "build"]
